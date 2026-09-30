@@ -12,14 +12,18 @@ const CINNABAR = "#D93A26";
 const METRIC = "#6B6B6B";
 
 /* Coordinate tag — every factoid is mapped [33:XX] */
+const Tag = ({ n, className = "" }) => (
+  <span
+    className={`bg-carbon px-1.5 py-0.5 font-mono text-[9px] tracking-widest text-ivory ${className}`}
+    style={{ background: CARBON, color: IVORY }}
+  >
+    [33:{String(n).padStart(2, "0")}]
+  </span>
+);
+
 const Coord = ({ n, children }) => (
   <div className="group relative border border-carbon/15 bg-card transition-colors hover:border-carbon/40 focus-within:border-cinnabar">
-    <span
-      className="absolute -top-px -left-px bg-carbon px-1.5 py-0.5 font-mono text-[9px] tracking-widest text-ivory"
-      style={{ background: CARBON, color: IVORY }}
-    >
-      [33:{String(n).padStart(2, "0")}]
-    </span>
+    <Tag n={n} className="absolute -top-px -left-px" />
     <div className="pt-6 px-3 pb-3">{children}</div>
   </div>
 );
@@ -57,7 +61,7 @@ const SectionLabel = ({ index, title, sub }) => (
 );
 
 /* ---------- Hero ---------- */
-function Hero({ heroUrl }) {
+function Hero() {
   const ref = useRef(null);
   const [rot, setRot] = useState(0);
 
@@ -99,11 +103,6 @@ function Hero({ heroUrl }) {
         aria-hidden
       />
 
-      {/* hero crystal */}
-      <div className="pointer-events-none absolute right-4 bottom-4 w-40 md:w-64 opacity-90 hidden sm:block">
-        <Img src={heroUrl} alt="Crystalline 33-fold structure" className="w-full h-full aspect-[3/2]" />
-      </div>
-
       {/* periodic-table style nav */}
       <nav className="relative z-10 flex flex-wrap items-center gap-1 px-4 pt-5 md:px-8">
         {nav.map(([href, label]) => (
@@ -134,12 +133,13 @@ function Hero({ heroUrl }) {
         <div
           className="font-heading leading-none select-none"
           style={{
-            fontSize: "clamp(180px, 42vw, 620px)",
+            fontSize: "clamp(180px, 80vw, 620px)",
             color: CARBON,
             transform: `rotate(${rot}deg)`,
             transformOrigin: "center",
             transition: "transform 0.1s linear",
-            fontWeight: 300,
+            fontWeight: 900,
+            letterSpacing: "-0.04em",
           }}
         >
           33
@@ -356,6 +356,7 @@ function Cosmos() {
       <div className="grid md:grid-cols-2 gap-2">
         {rows.map(([k, v], i) => (
           <div key={i} className="flex gap-3 border-b border-carbon/15 py-2">
+            <Tag n={13 + i} className="self-start mt-1.5 shrink-0" />
             <span className="font-mono text-2xl" style={{ color: CINNABAR, minWidth: "3ch" }}>{k}</span>
             <span className="text-sm" style={{ color: CARBON, lineHeight: 1.6, maxWidth: "60ch" }}>{v}</span>
           </div>
@@ -463,13 +464,12 @@ function Footer() {
 }
 
 export default function Home() {
-  const heroUrl = "/images/crystal-33.jpg";
   const spineUrl = "/images/spine-33.jpg";
   const arsenicUrl = "/images/arsenic-33.jpg";
 
   return (
     <main className="font-body" style={{ color: CARBON }}>
-      <Hero heroUrl={heroUrl} />
+      <Hero />
       <Mathematics />
       <ThreeCubes />
       <Biology spineUrl={spineUrl} />
