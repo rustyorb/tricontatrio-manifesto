@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Image } from "@/components/ui/image";
+import Img from "@/components/Img";
 
 /* ============================================================
    TRICONTATRIO — a dense cartography of the number 33
@@ -101,7 +101,7 @@ function Hero({ heroUrl }) {
 
       {/* hero crystal */}
       <div className="pointer-events-none absolute right-4 bottom-4 w-40 md:w-64 opacity-90 hidden sm:block">
-        <Image src={heroUrl} alt="Crystalline 33-fold structure" fittingType="fill" className="w-full h-full aspect-[3/2]" />
+        <Img src={heroUrl} alt="Crystalline 33-fold structure" className="w-full h-full aspect-[3/2]" />
       </div>
 
       {/* periodic-table style nav */}
@@ -267,7 +267,7 @@ function Biology({ spineUrl }) {
       <div className="grid md:grid-cols-5 gap-6">
         <div className="md:col-span-2 md:sticky md:top-8 self-start">
           <div className="aspect-[2/3] w-full overflow-hidden border border-carbon/20">
-            <Image src={spineUrl} alt="Human vertebral spine render" fittingType="fit" className="w-full h-full" />
+            <Img src={spineUrl} alt="Human vertebral spine render" fit="contain" className="w-full h-full" />
           </div>
           <p className="mt-3 font-mono text-[10px]" style={{ color: METRIC }}>
             7 cervical + 12 thoracic + 5 lumbar + 5 sacral + 4 coccygeal = <K>33</K> vertebrae at birth.
@@ -310,7 +310,7 @@ function Chemistry({ arsenicUrl }) {
       <SectionLabel index="04" title="Arsenic — Element 33" sub="ATOMIC NUMBER Z = 33" />
       <div className="grid md:grid-cols-3 gap-6 items-center">
         <div className="aspect-square w-full overflow-hidden border border-carbon/20">
-          <Image src={arsenicUrl} alt="Arsenic crystalline lattice" fittingType="fill" className="w-full h-full" />
+          <Img src={arsenicUrl} alt="Arsenic crystalline lattice" className="w-full h-full" />
         </div>
         <div className="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-3">
           {[
@@ -463,9 +463,9 @@ function Footer() {
 }
 
 export default function Home() {
-  const heroUrl = "https://media.base44.com/images/public/6abc59840053192e0e25bfb3/3b90f61b5_generated_555f7b58.jpg";
-  const spineUrl = "https://media.base44.com/images/public/6abc59840053192e0e25bfb3/9e1ba35a0_generated_8017ab52.jpg";
-  const arsenicUrl = "https://media.base44.com/images/public/6abc59840053192e0e25bfb3/daf29116f_generated_74e0e426.png";
+  const heroUrl = "/images/crystal-33.jpg";
+  const spineUrl = "/images/spine-33.jpg";
+  const arsenicUrl = "/images/arsenic-33.jpg";
 
   return (
     <main className="font-body" style={{ color: CARBON }}>
