@@ -15,6 +15,37 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      window.goatcounter = {
+        no_onload: true,
+        path: window.location.pathname,
+        referrer: document.referrer ? new URL(document.referrer).origin : "",
+        start: function () {
+          if (this.started || !["www.milorbs.com", "milorbs.com"].includes(window.location.host)) return;
+          this.started = true;
+
+          // GoatCounter also sends a separate query field; keep URL secrets out.
+          const getData = this.get_data;
+          this.get_data = function (vars) {
+            const data = getData(vars);
+            delete data.q;
+            return data;
+          };
+
+          const countWhenVisible = () => {
+            if (document.visibilityState && document.visibilityState !== "visible") return;
+            document.removeEventListener("visibilitychange", countWhenVisible);
+            this.count();
+          };
+          if (document.visibilityState && document.visibilityState !== "visible") {
+            document.addEventListener("visibilitychange", countWhenVisible);
+          } else {
+            countWhenVisible();
+          }
+        },
+      };
+    </script>
+    <script data-goatcounter="https://tirdytree.goatcounter.com/count" async src="https://gc.zgo.at/count.js" onload="window.goatcounter.start()"></script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

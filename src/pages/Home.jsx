@@ -244,6 +244,7 @@ function ThreeCubes() {
 function Biology({ spineUrl }) {
   const [active, setActive] = useState(null);
   const vertebrae = useMemo(() => {
+    /** @type {Array<[string, number, string]>} */
     const groups = [
       ["C", 7, "Cervical"],
       ["T", 12, "Thoracic"],
