@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Img from "@/components/Img";
+import VisitorCount from "@/components/VisitorCount";
 
 /* ============================================================
    TRICONTATRIO — a dense cartography of the number 33
@@ -479,6 +480,7 @@ export default function Home() {
       <Culture />
       <NewtonScale />
       <Footer />
+      <VisitorCount />
     </main>
   );
 }
